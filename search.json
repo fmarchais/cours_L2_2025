@@ -4,7 +4,7 @@
     "href": "pages/Les_bases.html",
     "title": "Les bases",
     "section": "",
-    "text": "Rappel des bases\nR est un langage de programmation fait pour l’analyse de données et les statistiques\nUn objet permet de stocker des valeurs. On créé un objet en lui donnant un nom, et on lui assigne une valeur avec la flèche d’assignation &lt;-\n\n\n\n\n\n\n\n\nChaque valeur appartient à une (ou plusieurs) classes, qui définissent sa nature\n\n\n\n\n\n\n\n\nOn regroupe plusieurs valeurs dans des vecteurs. Un vecteur ne contient que des valeurs de même classe\n\n\n\n\n\n\n\n\nLes dataframes sont une classe d’objets correspondant à des tableaux (format Excel par exemple). Chaque colonne est un vecteur\n\n\n\n\n\n\n\n\nLes fonctions permettent d’interagir avec les objets, afin de les modifier. On écrit toujours une fonction avec des parenthèses à la fin, en indiquant au milieu l’objet sur lequel on l’applique et si besoin les arguments (options) à activer. Certaines fonctions sont vectorisées et renvoient un vecteur de même longueur modifié, d’autres sont des fonctions d’aggrégation et renvoient une seule valeur pour tout un vecteur (somme, nombre de valeurs, etc)\n\n\n\n\n\n\n\n\n{dplyr} est un package, une extension, qui permet d’appliquer des fonctions en chaîne, avec une logique de chaîne d’assemblage sur une usine. Par exemple : on souhaite filtrer le jeu de données iris, puis sélectionner deux colonnes.\n\n\n\n\n\n\n\n\nLes fonctions en R ont généralement un nom simple, en anglais, qui correspond à ce qu’elles font : mean(), min(), max(), median(), sqrt(), sont des fonctions permettant de calculer respectivement la moyenne, le minimum, le maximum, la médiane et la racine carrée d’un vecteur numérique.\nfilter() permet de filtrer les lignes d’un tableau, et select() permet de sélectionner les colonnes.",
+    "text": "Rappel des bases\nR est un langage de programmation fait pour l’analyse de données et les statistiques\nUn objet permet de stocker des valeurs. On créé un objet en lui donnant un nom, et on lui assigne une valeur avec la flèche d’assignation &lt;-\n\n\n\n\n\n\n\n\nChaque valeur appartient à une (ou plusieurs) classes, qui définissent sa nature\n\n\n\n\n\n\n\n\nOn regroupe plusieurs valeurs dans des vecteurs. Un vecteur ne contient que des valeurs de même classe\n\n\n\n\n\n\n\n\nLes dataframes sont une classe d’objets correspondant à des tableaux (format Excel par exemple). Chaque colonne est un vecteur\n\n\n\n\n\n\n\n\nLes fonctions permettent d’interagir avec les objets, afin de les modifier. On écrit toujours une fonction avec des parenthèses à la fin, en indiquant au milieu l’objet sur lequel on l’applique et si besoin les arguments (options) à activer. Certaines fonctions sont vectorisées et renvoient un vecteur de même longueur modifié, d’autres sont des fonctions d’aggrégation et renvoient une seule valeur pour tout un vecteur (somme, nombre de valeurs, etc)\n\n\n\n\n\n\n\n\n{dplyr} est un package, une extension, qui permet d’appliquer des fonctions en chaîne en utilisant l’opérateur %&gt;% (pipe), avec une logique de chaîne d’assemblage sur une usine. Par exemple : on souhaite filtrer le jeu de données iris, puis sélectionner deux colonnes.\n\n\n\n\n\n\n\n\nLes fonctions en R ont généralement un nom simple, en anglais, qui correspond à ce qu’elles font : mean(), min(), max(), median(), sqrt(), sont des fonctions permettant de calculer respectivement la moyenne, le minimum, le maximum, la médiane et la racine carrée d’un vecteur numérique.\nfilter() permet de filtrer les lignes d’un tableau, et select() permet de sélectionner les colonnes.",
     "crumbs": [
       "Les bases"
     ]
@@ -14,28 +14,40 @@
     "href": "index.html",
     "title": "Introduction",
     "section": "",
-    "text": "La biologie est une discipline qui étudie des sujets complexes : les être vivants. Cette complexité est due aux très nombreuses interactions entre les “briques” qui composent les être vivants, à différentes échelles : les interactions chimiques entre les atomes, les molécules, les protéines, les cellules, les tissus, les organes et même entre les individus. Ainsi, il est difficile d’étudier l’effet d’une protéine sans comprendre ses interactions avec le reste de l’organisme, il faut donc prendre en compte tout l’environnement autour du sujet d’étude pour bien le comprendre. \nDans le domaine de la Recherche Clinique, on dit souvent que pour développer UN médicament, il faut screener 10.000 molécules. C’est parce que pour 10.000 molécules prometteuses sur le papier, en réalité seules 1.000 environ démontreront une efficacité sur des cellules isolées. Parmis ces 1.000, seules 100 montreront une efficacité dans les tests précliniques (organes, animaux), et seules 10 passeront à l’étape d’expérimentation sur l’humain, pour finalement avoir une molécule qui finira en médicament. \nPour illustrer cela, on peut prendre l’exemple d’une boîte de petri qui contiendrait des tissus cancéreux : y mettre le feu permet de détruire les cellules cancéreuses, mais n’en fait pas un bon traitement pour autant : il faut prendre en compte le contexte dans lequel l’objet d’étude évolue (ici, en l’occurrence : le corps humain) \nMais dans un génome qui fait 3.2 milliards de paires de bases, il est difficile de retenir toutes les interactions entre les différents gènes, ou même de simplement les lister. L’informatique est alors apparue comme une solution, dans un premier temps de stockage et de requêtage, puis de calcul et de visualisation, pour aller jusqu’à permettre aujourd’hui d’effectuer des prédictions."
+    "text": "La biologie est une discipline qui étudie des sujets complexes : les être vivants. Cette complexité est due aux très nombreuses interactions entre les “briques” qui composent les être vivants, à différentes échelles : les interactions chimiques entre les atomes, les molécules, les protéines, les cellules, les tissus, les organes et même entre les individus. Ainsi, il est difficile d’étudier l’effet d’une protéine sans comprendre ses interactions avec le reste de l’organisme, il faut donc prendre en compte tout l’environnement autour du sujet d’étude pour bien le comprendre. \nDans le domaine de la Recherche Clinique, on dit souvent que pour développer UN médicament, il faut screener 10.000 molécules. C’est parce que pour 10.000 molécules prometteuses sur le papier, en réalité seules 1.000 environ démontreront une efficacité sur des cellules isolées. Parmis ces 1.000, seules 100 montreront une efficacité dans les tests précliniques (organes, animaux), et seules 10 passeront à l’étape d’expérimentation sur l’humain, pour finalement avoir une molécule qui finira en médicament. \nPour illustrer cela, on peut prendre l’exemple d’une boîte de petri qui contiendrait des tissus cancéreux : y mettre le feu permet de détruire les cellules cancéreuses, mais n’en fait pas un bon traitement pour autant : il faut prendre en compte le contexte dans lequel l’objet d’étude évolue (ici, en l’occurrence : le corps humain) \nMais dans un génome qui fait 3.2 milliards de paires de bases, il est difficile de retenir toutes les interactions entre les différents gènes, ou même de simplement les lister. L’informatique est alors apparue comme une solution, dans un premier temps de stockage et de requêtage, puis de calcul et de visualisation, pour aller jusqu’à permettre aujourd’hui d’effectuer des prédictions.",
+    "crumbs": [
+      "Introduction"
+    ]
   },
   {
     "objectID": "index.html#quelques-exemples",
     "href": "index.html#quelques-exemples",
     "title": "Introduction",
     "section": "Quelques exemples",
-    "text": "Quelques exemples\n\nStatistique descriptive\n\nDataCode"
+    "text": "Quelques exemples\n\nStatistique descriptive\n\nDataCode",
+    "crumbs": [
+      "Introduction"
+    ]
   },
   {
     "objectID": "index.html#graphes",
     "href": "index.html#graphes",
     "title": "Introduction",
     "section": "Graphes",
-    "text": "Graphes"
+    "text": "Graphes",
+    "crumbs": [
+      "Introduction"
+    ]
   },
   {
     "objectID": "index.html#reporting",
     "href": "index.html#reporting",
     "title": "Introduction",
     "section": "Reporting",
-    "text": "Reporting\nQuelques exemples de rapports, tableaux de bord et applications réalisables avec R (et d’autres outils comme Shiny et Quarto)\n\nIndian blood banks\nNew Zealand dashboard\nQuarto HTML Basics\nIntro au Tidyverse"
+    "text": "Reporting\nQuelques exemples de rapports, tableaux de bord et applications réalisables avec R (et d’autres outils comme Shiny et Quarto)\n\nIndian blood banks\nNew Zealand dashboard\nQuarto HTML Basics\nIntro au Tidyverse",
+    "crumbs": [
+      "Introduction"
+    ]
   },
   {
     "objectID": "pages/TP1.html#exercice-1-explorer-les-données",
