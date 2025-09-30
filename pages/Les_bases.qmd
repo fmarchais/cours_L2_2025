@@ -58,7 +58,7 @@ total_notes + 1 # opération vectorisée
 sum(total_notes) # fonction d'aggrégation
 ```
 
-`{dplyr}` est un `package`, une extension, qui permet d'appliquer des fonctions en chaîne, avec une logique de chaîne d'assemblage sur une usine.
+`{dplyr}` est un `package`, une extension, qui permet d'appliquer des fonctions en chaîne en utilisant l'opérateur `%>% (pipe)`, avec une logique de chaîne d'assemblage sur une usine.
 Par exemple : on souhaite filtrer le jeu de données *iris*, puis sélectionner deux colonnes.
 
 ```{webr dplyr}

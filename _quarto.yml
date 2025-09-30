@@ -1,5 +1,5 @@
 project:
-  title: "cours_R"
+  title: "Introduction à R et la gestion des données"
   type: website
   
   
@@ -19,6 +19,7 @@ website:
     style: "docked"
     search: true
     contents: 
+      - "index.qmd"
       - "pages/Les_bases.qmd"
       - "pages/TP1.qmd"
     
