@@ -1,0 +1,82 @@
+---
+title: "Les bases"
+format: live-html
+engine: knitr
+webr:
+  packages: 
+    - dplyr
+  render-df: gt-interactive
+---
+
+{{< include ./../_extensions/r-wasm/live/_knitr.qmd >}}
+
+
+# Rappel des bases  
+
+R est un langage de programmation fait pour l'analyse de données et les statistiques
+
+Un `objet` permet de stocker des `valeurs`. On créé un objet en lui donnant un nom, et on lui `assigne` une valeur avec la flèche d'assignation `<-`
+
+```{webr objets}
+#| persist: true
+note_eleve <- 15 # Assigner la valeur 15 à l'objet
+
+note_eleve # afficher sa valeur
+```
+
+Chaque valeur appartient à une (ou plusieurs) `classes`, qui définissent sa nature
+
+```{webr classes}
+class(note_eleve)
+class("lundi")
+```
+
+On regroupe plusieurs valeurs dans des `vecteurs`. Un vecteur ne contient que des valeurs de même classe
+
+```{webr vecteurs}
+#| persist: true
+total_notes <- c(10,12,15,17)
+total_notes
+
+autres_notes <- c(10,11, "douze", 13)
+class(autres_notes)
+```
+
+
+Les `dataframes` sont une classe d'objets correspondant à des tableaux (format Excel par exemple). Chaque colonne est un vecteur
+```{webr dataframes}
+iris
+```
+
+
+Les `fonctions` permettent d'interagir avec les `objets`, afin de les modifier. On écrit toujours une fonction avec des parenthèses à la fin, en indiquant au milieu l'objet sur lequel on l'applique et si besoin les `arguments` (options) à activer.
+Certaines fonctions sont `vectorisées` et renvoient un vecteur de même longueur modifié, d'autres sont des fonctions d'`aggrégation` et renvoient une seule valeur pour tout un vecteur (somme, nombre de valeurs, etc)
+
+```{webr fonctions}
+#| persist: true
+total_notes + 1 # opération vectorisée
+sum(total_notes) # fonction d'aggrégation
+```
+
+`{dplyr}` est un `package`, une extension, qui permet d'appliquer des fonctions en chaîne, avec une logique de chaîne d'assemblage sur une usine.
+Par exemple : on souhaite filtrer le jeu de données *iris*, puis sélectionner deux colonnes.
+
+```{webr dplyr}
+# On passe de 
+df <- iris
+df1 <- filter(df, Sepal.Length >= 7.5)
+df2 <- select(df1, Sepal.Length, Species)
+df2
+
+# à, avec dplyr :
+library(dplyr)
+
+iris %>%
+  filter(Sepal.Length >= 7.5) %>%
+  select(Sepal.Length, Species)
+```
+
+
+Les fonctions en R ont généralement un nom simple, en anglais, qui correspond à ce qu'elles font : mean(), min(), max(), median(), sqrt(), sont des fonctions permettant de calculer respectivement la moyenne, le minimum, le maximum, la médiane et la racine carrée d'un vecteur numérique.
+
+filter() permet de filtrer les lignes d'un tableau, et select() permet de sélectionner les colonnes.

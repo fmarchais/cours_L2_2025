@@ -1,0 +1,105 @@
+---
+title: "Les bases"
+format: live-html
+engine: knitr
+webr:
+  packages: 
+    - dplyr
+  render-df: gt-interactive
+draft: true
+---
+
+{{< include /_extensions/r-wasm/live/_knitr.qmd >}}
+
+# Comprendre R
+
+Il existe différents paradigmes de programmation : par exemple les langages *déclaratifs*, qui consistent en l'exécution stricte d'une suite d'instruction, ou ceux *orienté objet* qui consistent à définir un "objet" (une donnée) via des attributs, et les faire interagir entre eux.
+
+::: callout-tip
+## Pour simplifier  
+Un langage déclaratif consisterait à dire à un robot : "Va me chercher des oeufs au supermarché qui se trouve au bout de la rue, Allée 8 sur la gauche, 3e étagère." \n Un langage objet dirait plutôt : "Rends toi dans un bâtiment où il est écrit *supermarché*, et trouve l'article rangé au rayon 'oeufs', de couleur beige, de forme ovale, vendu par 12".
+:::
+
+R est un langage multi-paradigme, à la fois déclaratif et orienté objet, mais surtout *fonctionnel*, c'est-à-dire basé sur les fonctions. Les données sont stockées sous forme d'objets, et sont modifiées par des fonctions, comme sur une ligne d'assemblage d'une usine.
+
+
+![Un objet initial A passe au travers d'une fonction et se retrouve modifié](/images/debuter-r/ligne_assemblage.jpg)
+
+La nature d'un objet (tableau, liste, graphe) est déterminée par sa **classe**
+
+## Les objets  
+
+Un **objet** est comme un boîte qui va enregistrer des **valeurs**, pour ensuite interagir avec. On créé un **objet** en lui donnant un nom, puis on lui attribue une valeur avec la flèche d'assignation `<-`
+
+En appelant l'objet, on obtient sa valeur
+
+Exemple :
+
+```{webr demo_1}
+note_eleve <- 15
+
+note_eleve # le print() n'est pas obligatoire
+```
+
+Un objet peut contenir plusieurs valeurs, souvent regroupées sous la forme de **vecteurs**
+
+Un vecteur est une suite de valeur de même classe (détaillé dans la partie "Les classes" ), que l'on créé en regroupant les valeurs avec la fonction c()
+
+```{webr demo_2}
+my_vector <- c(1,2,3,4,5)
+my_vector
+
+```
+
+En R, certaines fonctions sont dites **scalaires** : elles s'appliquent sur tout un vecteur et renvoient une seule valeur. A l'inverse, certaines sont dites **vectorisées**, car elles s'appliquent sur toutes les valeurs d'un vecteur. Les fonctions **vectorisées** qui combinent un vecteur avec d'autres valeurs offrent deux possibilités : Indiquer une valeur unique, qui sera réutilisée sur tout le vecteur, ou combiner le vecteur avec un autre vecteur de même longueur
+
+```{webr demo_3}
+mean(my_vector) # Fonction non vectorisée
+my_vector + 1 # Vectorisée, valeur unique
+my_vector + c(6,7,8,9,10) # vectorisée, même longueur
+my_vector + c(6,7,8) # Erreur
+
+```
+
+## Les fonctions
+
+Une **fonction** est une action qui va permettre d'agir sur un objet (l'afficher, le modifier, le combiner avec un autre...)
+
+Une fonction est appelée via son nom, toujours suivie de parenthèses. Exemple : sum(). \n 
+
+Entre les parenthèses, on notera souvent l'objet ou les valeurs à transformer et parfois des options pour modifier l'effet de la fonction. On dit que la fonction prend des `arguments`. \n
+
+Chaque fonction accepte différents arguments et peut posséder une grammaire différente. Pour savoir comment utiliser une fonction, on peut taper `?fonction` dans la console. Essayons par exemple avec la fonction mean().
+
+```{webr help}
+?mean
+```
+La documentation de chaque fonction inclut toujours :
+
+-   Description : Ce que fait la fonction
+
+-   Usage : Comment l'écrire
+
+-   Arguments : Le détail des arguments acceptés
+
+-   Value : Ce qui sort de la fonction
+
+-   Examples : Des exemples d'utilisation de la fonction
+
+
+
+## Les classes {.sec-classes}
+
+simples : numeric, character, int, logical
+
+complexes : data.frame, list, matrix
+
+# Conclusion
+
+Un script R suit souvent ce schéma :
+
+-   Importer des données
+
+-   Les transformer pour les rendre exploitables
+
+-   Visualiser les résultats
