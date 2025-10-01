@@ -608,7 +608,7 @@
     "href": "pages/Les_bases.html",
     "title": "Les bases",
     "section": "",
-    "text": "Rappel des bases\nR est un langage de programmation fait pour l’analyse de données et les statistiques\nUn objet permet de stocker des valeurs. On créé un objet en lui donnant un nom, et on lui assigne une valeur avec la flèche d’assignation &lt;-\n\n\n\n\n\n\n\n\nChaque valeur appartient à une (ou plusieurs) classes, qui définissent sa nature\n\n\n\n\n\n\n\n\nOn regroupe plusieurs valeurs dans des vecteurs. Un vecteur ne contient que des valeurs de même classe\n\n\n\n\n\n\n\n\nLes dataframes sont une classe d’objets correspondant à des tableaux (format Excel par exemple). Chaque colonne est un vecteur\n\n\n\n\n\n\n\n\nLes fonctions permettent d’interagir avec les objets, afin de les modifier. On écrit toujours une fonction avec des parenthèses à la fin, en indiquant au milieu l’objet sur lequel on l’applique et si besoin les arguments (options) à activer. Certaines fonctions sont vectorisées et renvoient un vecteur de même longueur modifié, d’autres sont des fonctions d’aggrégation et renvoient une seule valeur pour tout un vecteur (somme, nombre de valeurs, etc)\n\n\n\n\n\n\n\n\n{dplyr} est un package, une extension, qui permet d’appliquer des fonctions en chaîne, avec une logique de chaîne d’assemblage sur une usine. Par exemple : on souhaite filtrer le jeu de données iris, puis sélectionner deux colonnes.\n\n\n\n\n\n\n\n\nLes fonctions en R ont généralement un nom simple, en anglais, qui correspond à ce qu’elles font : mean(), min(), max(), median(), sqrt(), sont des fonctions permettant de calculer respectivement la moyenne, le minimum, le maximum, la médiane et la racine carrée d’un vecteur numérique.\nfilter() permet de filtrer les lignes d’un tableau, et select() permet de sélectionner les colonnes.",
+    "text": "Rappel des bases\nR est un langage de programmation fait pour l’analyse de données et les statistiques\nUn objet permet de stocker des valeurs. On créé un objet en lui donnant un nom, et on lui assigne une valeur avec la flèche d’assignation &lt;-\n\n\n\n\n\n\n\n\nChaque valeur appartient à une (ou plusieurs) classes, qui définissent sa nature\n\n\n\n\n\n\n\n\nOn regroupe plusieurs valeurs dans des vecteurs. Un vecteur ne contient que des valeurs de même classe\n\n\n\n\n\n\n\n\nLes dataframes sont une classe d’objets correspondant à des tableaux (format Excel par exemple). Chaque colonne est un vecteur\n\n\n\n\n\n\n\n\nLes fonctions permettent d’interagir avec les objets, afin de les modifier. On écrit toujours une fonction avec des parenthèses à la fin, en indiquant au milieu l’objet sur lequel on l’applique et si besoin les arguments (options) à activer. Certaines fonctions sont vectorisées et renvoient un vecteur de même longueur modifié, d’autres sont des fonctions d’aggrégation et renvoient une seule valeur pour tout un vecteur (somme, nombre de valeurs, etc)\n\n\n\n\n\n\n\n\n{dplyr} est un package, une extension, qui permet d’appliquer des fonctions en chaîne en utilisant l’opérateur %&gt;% (pipe), avec une logique de chaîne d’assemblage sur une usine. Par exemple : on souhaite filtrer le jeu de données iris, puis sélectionner deux colonnes.\n\n\n\n\n\n\n\n\nLes fonctions en R ont généralement un nom simple, en anglais, qui correspond à ce qu’elles font : mean(), min(), max(), median(), sqrt(), sont des fonctions permettant de calculer respectivement la moyenne, le minimum, le maximum, la médiane et la racine carrée d’un vecteur numérique.\nfilter() permet de filtrer les lignes d’un tableau, et select() permet de sélectionner les colonnes.",
     "crumbs": [
       "Les bases"
     ]
@@ -629,6 +629,36 @@
     "title": "TP 1",
     "section": "Exercice 1 : Explorer les données",
     "text": "Exercice 1 : Explorer les données\n\n\n\n\n\n\nNote\n\n\n\nLe jeu de données s’appelle cytomegalovirus, mais pour faire court, on appellera l’objet cyto dans les exercices\n\n\n\n\n\n\n\n\n\n\nLa fonction count() permet d’afficher le nombre de lignes d’un jeu de données. Si on lui donne le nom d’une colonne en argument, elle affiche le nombre de ligne pour chaque valeur différente de cette colonne.\nAffichez le nombre d’hommes et de femmes\n\n\n\n\n\n\n\n\n\n\n\nAvec les fonctions group_by() et summarize() vues plus tôt, affichez le minimum, le maximum et la moyenne d’âge par sexe",
+    "crumbs": [
+      "TP 1"
+    ]
+  },
+  {
+    "objectID": "pages/TP1.html#exercice-2-nettoyer-les-données",
+    "href": "pages/TP1.html#exercice-2-nettoyer-les-données",
+    "title": "TP 1",
+    "section": "Exercice 2 : Nettoyer les données",
+    "text": "Exercice 2 : Nettoyer les données\nLa fonction summary(), utilisée sur un dataframe, permet de visualiser de nombreuses informations sur un jeu de données.\n\n\n\n\n\n\n\n\nProblème : on remarque que des variables comme le sexe ou l’ethnie sont codées en 0/1 et apparaissent comme des valeurs numériques. On souhaite recoder ces variables dans la classe factor. \nUn vecteur de classe factor contient des valeurs appartenant à une liste pré-établie (pas du texte libre, donc). On attribue une valeur arbitraire à chaque réponse, et les données sont stockées au format numérique. Par exemple, pour coder la variable sex en factor, R attribuera la valeur 1 à la première valeur qui apparait, puis 2, etc… On aura par exemple 1 = “Femme” et 2 = “Homme”, avec un vecteur contenant les valeurs c(1,2,2,2,1,1,2,1,2,1,2). Le vecteur contient donc des nombres, mais qui ne sont pas considérés comme des valeurs numériques.\nPour modifier la colonne d’un dataframe, on utilise la fonction mutate(), généralement avec :\n\n\n\n\n\n\n\n\nMais lorsque l’on souhaite modifier plusieurs colonnes d’un coup, on peut utiliser la variante mutate_at(). Cette fonction prend deux arguments : un vecteur de classe character contenant la liste des colonnes à modifier, et le nom de la fonction à appliquer\nConsigne : A partir du dictionnaire des données, identifiez les variables de classe facteur, et modifiez-les pour avoir un summary() pertinent\n\n\n\n\n\n\n\n\n\n\n\nLe résultat du summary() est désormais plus clair, mais on souhaite avoir dans le résultat le label des variables factor. Pour cela, on utilisera le package {forcats}.",
+    "crumbs": [
+      "TP 1"
+    ]
+  },
+  {
+    "objectID": "pages/TP1.html#exercice-3-visualiser-les-données",
+    "href": "pages/TP1.html#exercice-3-visualiser-les-données",
+    "title": "TP 1",
+    "section": "Exercice 3 : Visualiser les données",
+    "text": "Exercice 3 : Visualiser les données\nLe package {ggplot2} permet de générer des graphes à partir des données d’un dataframe. La fonction ggplot() fonctionne par “couches”, ou layers : on commence par créer les coordonnées (axe X,Y), puis on définit les points/lignes à afficher dans ggplot(), on utilise la fonction aes() (pour aesthetics) pour définir les axes, et on définit ensuite le type de graphe à afficher avec les fonctions geom_* (geom_point, geom_line, geom_histogram…)\nVisualiser le temps de réactivation en fonction des aKIRs, par statut du donneur\n\n\n\n\n\n\n\n\n\n\n\nUne façon plus interactive de visualiser les données est d’utiliser le package {GWalkR} :",
+    "crumbs": [
+      "TP 1"
+    ]
+  },
+  {
+    "objectID": "pages/TP1.html#test-statistique",
+    "href": "pages/TP1.html#test-statistique",
+    "title": "TP 1",
+    "section": "Test statistique",
+    "text": "Test statistique\nOn souhaite réaliser un t.test pour savoir si les KIRs évoluent en fonction du statut cmv :",
     "crumbs": [
       "TP 1"
     ]

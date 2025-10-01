@@ -2,6 +2,7 @@
 title: "Les bases"
 format: live-html
 engine: knitr
+toc: true
 webr:
   packages: 
     - dplyr

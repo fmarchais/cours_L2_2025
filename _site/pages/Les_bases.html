@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -133,7 +133,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rappel-des-bases" id="toc-rappel-des-bases" class="nav-link active" data-scroll-target="#rappel-des-bases">Rappel des bases</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -214,7 +222,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsInBlcnNpc3QiOnRydWV9LCJjb2RlIjoidG90
 </script>
 </div>
 </div>
-<p><code>{dplyr}</code> est un <code>package</code>, une extension, qui permet d’appliquer des fonctions en chaîne, avec une logique de chaîne d’assemblage sur une usine. Par exemple : on souhaite filtrer le jeu de données <em>iris</em>, puis sélectionner deux colonnes.</p>
+<p><code>{dplyr}</code> est un <code>package</code>, une extension, qui permet d’appliquer des fonctions en chaîne en utilisant l’opérateur <code>%&gt;% (pipe)</code>, avec une logique de chaîne d’assemblage sur une usine. Par exemple : on souhaite filtrer le jeu de données <em>iris</em>, puis sélectionner deux colonnes.</p>
 <div class="cell">
 <div>
 <div id="webr-6" class="exercise-cell">

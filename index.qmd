@@ -4,6 +4,7 @@ author: "Félix Marchais"
 date: "2025-08-12"
 draft: false
 format: live-html
+toc: true
 engine: knitr
 webr:
   packages: 

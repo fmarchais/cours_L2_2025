@@ -7,6 +7,9 @@ webr:
     - dplyr
     - medicaldata
     - gt
+    - forcats
+    - GWalkR
+toc: true
 ---
 
 {{< include ./../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -15,7 +18,7 @@ webr:
 
 ![](./../documents/Cytomegalovirus Dataset Introduction.pdf){width=100% height=800}
 
-# Problématique : 
+# Problématique  
 
 La greffe de cellules souches hématopoïétiques (*HSCT*) est une thérapies des hémopathies malignes (leucémies, lymphomes, myélomes) et à d'autres troubles hématologiques (p. ex., déficit immunitaire primitif, aplasie médullaire, myélodysplasie). La greffe de cellules souches hématopoïétiques est aussi parfois utilisée pour les tumeurs solides (p. ex., certaines tumeurs des cellules germinales) qui répondent à la chimiothérapie.
 
@@ -30,7 +33,7 @@ Les cellules NK (*Natural Killer*) et les lymphocytes T jouent un rôle de prote
 Une hypothèse est que le génotype KIR du donneur a un impact sur la réactivation du CMV après une HSCT.
 
 
-# Objectif du TP :
+# Objectif du TP  
 
 - Lire les documents et comprendre la problématique
 
@@ -45,7 +48,7 @@ Une hypothèse est que le génotype KIR du donneur a un impact sur la réactivat
 - Répondre à l'hypothèse de départ
 
 
-# Les données : 
+# Les données  
 
 ```{webr data}
 #| echo: false
@@ -107,9 +110,7 @@ ______ %>%
 ```{webr}
 #| exercise: exo_1
 #| check: true
-if (.user_code == 
-"cyto %>% 
-  count(sex)") {
+if (identical(.result, cyto %>% count(sex)) {
   list(correct = TRUE, message = "Correct !")
 } else {
   list(correct = FALSE, message = "Erreur !")
@@ -147,23 +148,151 @@ if (identical(
 ```
 
 
+## Exercice 2 : Nettoyer les données 
 
-<!-- Visualiser le temps de réactivation en fonction des aKIRs, par statut du donneur -->
-<!-- ```{webr} -->
-<!-- ggplot( -->
-<!--     data = cytomegalovirus, -->
-<!--     mapping = aes( -->
-<!--         x = aKIRs, -->
-<!--         y = time.to.cmv, -->
-<!--         color = as.factor(donor.cmv) -->
-<!--     ) -->
-<!-- ) + -->
-<!--     geom_point() + -->
-<!--     geom_smooth(method = "lm") -->
+La fonction summary(), utilisée sur un dataframe, permet de visualiser de nombreuses informations sur un jeu de données.
+
+```{webr}
+summary(cyto)
+```
+
+Problème : on remarque que des variables comme le sexe ou l'ethnie sont codées en 0/1 et apparaissent comme des valeurs numériques.
+On souhaite recoder ces variables dans la classe `factor`. \n
+
+Un vecteur de classe *factor* contient des valeurs appartenant à une liste pré-établie (pas du texte libre, donc). On attribue une valeur arbitraire à chaque réponse, et les données sont stockées au format numérique.
+Par exemple, pour coder la variable *sex* en factor, R attribuera la valeur 1 à la première valeur qui apparait, puis 2, etc... On aura par exemple 1 = "Femme" et 2 = "Homme", avec un vecteur contenant les valeurs c(1,2,2,2,1,1,2,1,2,1,2).
+Le vecteur contient donc des nombres, mais qui ne sont pas considérés comme des valeurs numériques.
+
+Pour modifier la colonne d'un dataframe, on utilise la fonction mutate(), généralement avec : 
+```{webr}
+#| persist: false
+cyto <- cyto %>% mutate(sex = as.factor(sex))
+```
+
+Mais lorsque l'on souhaite modifier plusieurs colonnes d'un coup, on peut utiliser la variante mutate_at().
+Cette fonction prend deux arguments : un vecteur de classe `character` contenant la liste des colonnes à modifier, et le nom de la fonction à appliquer
 
 
-<!-- t.test(aKIRs ~ cmv, data = cytomegalovirus) -->
-<!-- ``` -->
+**Consigne : A partir du dictionnaire des données, identifiez les variables de classe `facteur`, et modifiez-les pour avoir un summary() pertinent**
+
+```{webr}
+#| persist: true
+#| exercise: exo_3
+cyto <- cyto %>%
+  mutate_at(
+    c(___,____, ...),
+    as.factor
+  )
+
+summary(cyto)
+
+```
+
+
+```{webr}
+#| exercise: exo_3
+#| check: true
+if (identical(
+  .result, 
+  summary(cyto %>% 
+          mutate_at(c("sex", "race", 
+                      "diagnosis.type", "prior.radiation", 
+                      "prior.transplant", "recipient.cmv",
+                      "donor.cmv", "C1/C2",
+                      "cmv", "agvhd", "cgvhd"
+                      ), 
+                    as.factor
+                    )
+  )
+)) {
+  list(correct = TRUE, message = "Correct !")
+} else {
+  list(correct = FALSE, message = "Erreur !")
+}
+```
+
+
+Le résultat du summary() est désormais plus clair, mais on souhaite avoir dans le résultat le `label` des variables *factor*. Pour cela, on utilisera le package {forcats}.
+
+```{webr}
+library(forcats)
+
+clean_cyto <- cyto %>%
+  mutate(sex = fct_recode(sex, Femme = "0", Homme = "1"),
+         ____ = ____(____, _____)
+         )
+
+summary(clean_cyto)
+```
+
+## Exercice 3 : Visualiser les données  
+
+Le package {ggplot2} permet de générer des graphes à partir des données d'un dataframe.
+La fonction ggplot() fonctionne par "couches", ou *layers* : on commence par créer les coordonnées (axe X,Y), puis on définit les points/lignes à afficher
+dans ggplot(), on utilise la fonction aes() (pour *aesthetics*) pour définir les axes, et on définit ensuite le type de graphe à afficher avec les fonctions geom_* (geom_point, geom_line, geom_histogram...)
+
+**Visualiser le temps de réactivation en fonction des aKIRs, par statut du donneur**
+
+
+```{webr}
+#| exercise: exo_4
+library(ggplot2)
+
+clean_cyto %>% 
+  ggplot(
+    mapping = aes(
+      x = _____,
+      y = _____,
+      color = _____
+    )
+  ) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+
+```{webr}
+#| exercise: exo_4
+#| check: true
+if (identical(
+  .result, 
+  cyto %>% 
+  ggplot(
+    mapping = aes(
+      x = aKIRs,
+      y = time.to.cmv,
+      color = donor.cmv
+    )
+  ) +
+  geom_point() +
+  geom_smooth(method = "lm")
+)) {
+  list(correct = TRUE, message = "Correct !")
+} else {
+  list(correct = FALSE, message = "Erreur !")
+}
+```
+
+Une façon plus interactive de visualiser les données est d'utiliser le package {GWalkR} :
+
+```{webr}
+library(GWalkR)
+gwalkr(clean_cyto)
+```
+
+
+
+## Test statistique
+
+On souhaite réaliser un t.test pour savoir si les KIRs évoluent en fonction du statut cmv :
+
+```{webr}
+t.test(aKIRs ~ cmv, data = cytomegalovirus) 
+```
+
+
+
+
 
 
 
