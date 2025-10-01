@@ -62,6 +62,17 @@ example_isolates %>%
   arrange(desc(n))
 ```
 
+
+**Retrouver le nom complet de B_STRPT_PNMN** 
+
+```{webr}
+micro %>%
+  ____(____) %>%
+  ____(____)
+```
+
+
+
 **Evaluer la sensibilité d'e.coli (B_ESCHR_COLI) à la Penicilline**
 
 ```{webr}
