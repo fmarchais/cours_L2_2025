@@ -12,7 +12,7 @@ webr:
 toc: true
 ---
 
-{{< include ./../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include /_extensions/r-wasm/live/_knitr.qmd >}}
 
 # Documents  
 
@@ -164,6 +164,7 @@ Par exemple, pour coder la variable *sex* en factor, R attribuera la valeur 1 à
 Le vecteur contient donc des nombres, mais qui ne sont pas considérés comme des valeurs numériques.
 
 Pour modifier la colonne d'un dataframe, on utilise la fonction mutate(), généralement avec : 
+
 ```{webr}
 #| persist: false
 cyto <- cyto %>% mutate(sex = as.factor(sex))

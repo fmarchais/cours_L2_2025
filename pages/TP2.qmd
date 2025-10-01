@@ -1,0 +1,174 @@
+---
+title: "TP 2"
+format: live-html
+engine: knitr
+webr:
+  packages: 
+    - dplyr
+    - AMR
+    - forcats
+    - lubridate
+    - gt
+    - tidyr
+toc: true
+---
+
+{{< include /_extensions/r-wasm/live/_knitr.qmd >}}
+
+
+Dans ce TP, on explorera le jeu de données `microorganisms`, qu'on appellera `micro`, et `example_isolates` qui contient les données de sensibilité aux antibiotiques de patients infectés par différents microorganismes.
+
+# Les données  
+
+## micro
+
+```{webr}
+#| echo: false
+#| persist: true
+#| timelimit: 0
+micro <- AMR::microorganisms
+gt::gt(micro) %>%
+  opt_interactive()
+```
+
+## example_isolates  
+```{webr}
+#| echo: false
+#| persist: true
+#| timelimit: 0
+
+gt::gt(AMR::example_isolates) %>%
+  opt_interactive()
+```
+
+## Exploration
+
+```{webr}
+#| persists: true
+
+library(AMR)
+# filtrer pour ne garder que les bactéries et les colonnes mo, fullname, kingdom
+micro %>% 
+  filter(kingdom == "Bacteria") %>%
+  select(mo, fullname, kingdom)
+
+# Example_isolates : un dataset contenant des données sur 
+# la sensibilité aux ATB de patients infectés par différents micro-organismes
+
+# première exploration : quelles bactéries sont snesibles à la penicilline
+example_isolates %>% 
+  filter(PEN == "S") %>%
+  count(mo)
+```
+
+**Evaluer la sensibilité d'e.coli à la Penicilline**
+
+```{webr}
+#| exercise: exo_1
+example_isolates %>% 
+  filter(mo == "_____") %>%
+  count(____)
+```
+
+```{webr}
+#| exercise: exo_1
+#| check: true
+if (identical(.result,
+              example_isolates %>% 
+                    filter(mo == "B_ESCHR_COLI") %>%
+                    count(PEN)
+                    ) {
+  list(correct = TRUE, message = "Correct !")
+} else {
+  list(correct = FALSE, message = "Erreur !")
+}
+```
+
+
+## Nettoyage  
+
+Pour rendre les donneés plus lisibles, on va pivoter la table
+```{webr}
+#| persist: true
+# Faire pivoter la table pour obtenir deux colonnes au lieu de 40
+ecoli <- example_isolates %>% filter(mo == "B_ESCHR_COLI")
+
+sensi_ecoli_pivot <- pivot_longer(ecoli, 
+             cols = c("PEN", "OXA", 
+                        "FLC", "AMX", "AMC", "AMP", "TZP", "CZO", "FEP", "CXM", "FOX", 
+                        "CTX", "CAZ", "CRO", "GEN", "TOB", "AMK", "KAN", "TMP", "SXT", 
+                        "NIT", "FOS", "LNZ", "CIP", "MFX", "VAN", "TEC", "TCY", "TGC", 
+                        "DOX", "ERY", "CLI", "AZM", "IPM", "MEM", "MTR", "CHL", "COL", 
+                        "MUP", "RIF"), 
+             names_to = "ANTIBIO", 
+             values_to = "RESISTANCE",
+             values_drop_na = TRUE
+)
+# compter les nombre d'apparition de chaque résistance pour chaque antibio
+result_sensi <- sensi_ecoli_pivot %>%
+  count(ANTIBIO, RESISTANCE)
+```
+
+
+
+**Identifier le pourcentage de résistance à chaque antibiotique**
+
+```{webr}
+# pivoter la table et calculer le % de résistance de e.coli à chaque antibio
+result_sensi <- pivot_wider(result_sensi,
+            id_cols = "ANTIBIO",
+            names_from = "RESISTANCE", 
+            values_from = "n")
+
+result_sensi$sensi_p <- result_sensi$S / rowSums(
+  result_sensi %>% select(S,I,R), 
+  na.rm = TRUE)*100
+
+result_sensi <- result_sensi %>% arrange(-sensi_p)
+
+## CONSIGNE : 
+# LES DEUX ATB LES + EFFICACES SONT IPM ET MEM
+# IMIPENEM ET MEROPENEM SONT DES CARBAPENEMS
+# RECHERCHER LES MECANISMES D'ACTION 
+# DES CARBAPENEMS
+# FAIRE LE LIEN AVEC E.COLI
+
+```
+
+
+## Visualiser les données  
+
+```{webr}
+# Fonction "antibiogram" du package AMR
+# permet d'obtenir le % de sensibilité aux antibiotiques
+atb <- antibiogram(example_isolates, language = "fr")
+
+atb_plot <- pivot_longer(atb, 
+             cols = c("PEN", "OXA", 
+                      "FLC", "AMX", "AMC", "AMP", "TZP", "CZO", "FEP", "CXM", "FOX", 
+                      "CTX", "CAZ", "CRO", "GEN", "TOB", "AMK", "KAN", "TMP", "SXT", 
+                      "NIT", "FOS", "LNZ", "CIP", "MFX", "VAN", "TEC", "TCY", "TGC", 
+                      "DOX", "ERY", "CLI", "AZM", "IPM", "MEM", "CHL", "COL", 
+                      "MUP", "RIF"), 
+             names_to = "ANTIBIO", 
+             values_to = "SENSIBILITE",
+             values_drop_na = TRUE
+)
+
+colnames(atb_plot) <- c("mo","ANTIBIO","SENSIBILITE")
+
+
+ggplot(atb_plot, aes(ANTIBIO, SENSIBILITE)) +
+  geom_bar(stat = 'identity') +
+  coord_polar(theta = "x", direction = 1) +
+  facet_wrap( ~ mo)
+```
+
+
+
+
+
+
+
+
+
