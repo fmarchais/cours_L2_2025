@@ -55,7 +55,7 @@ micro
 # Example_isolates : un dataset contenant des données sur 
 # la sensibilité aux ATB de patients infectés par différents micro-organismes
 
-# première exploration : quelles bactéries sont snesibles à la penicilline
+# première exploration : quelles bactéries sont sensibles à la penicilline
 example_isolates %>% 
   filter(PEN == "S") %>%
   count(mo) %>%
@@ -89,12 +89,15 @@ if (identical(.result,
               example_isolates %>% 
                     filter(mo == "B_ESCHR_COLI") %>%
                     count(PEN)
-                    ) {
+                    )) {
   list(correct = TRUE, message = "Correct !")
 } else {
   list(correct = FALSE, message = "Erreur !")
 }
 ```
+
+
+CONSIGNE : Chercher Escherichia Coli et Streptococcus pneumoniae. Sont-elles sensibles à la penicilline ? Pourquoi ?
 
 
 ## Nettoyage  
@@ -126,6 +129,7 @@ result_sensi <- sensi_ecoli_pivot %>%
 **Identifier le pourcentage de résistance à chaque antibiotique**
 
 ```{webr}
+persist: true
 # pivoter la table et calculer le % de résistance de e.coli à chaque antibio
 result_sensi <- pivot_wider(result_sensi,
             id_cols = "ANTIBIO",
