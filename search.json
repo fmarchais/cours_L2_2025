@@ -58,5 +58,35 @@
     "crumbs": [
       "TP 1"
     ]
+  },
+  {
+    "objectID": "pages/TP1.html#exercice-2-nettoyer-les-données",
+    "href": "pages/TP1.html#exercice-2-nettoyer-les-données",
+    "title": "TP 1",
+    "section": "Exercice 2 : Nettoyer les données",
+    "text": "Exercice 2 : Nettoyer les données\nLa fonction summary(), utilisée sur un dataframe, permet de visualiser de nombreuses informations sur un jeu de données.\n\n\n\n\n\n\n\n\nProblème : on remarque que des variables comme le sexe ou l’ethnie sont codées en 0/1 et apparaissent comme des valeurs numériques. On souhaite recoder ces variables dans la classe factor. \nUn vecteur de classe factor contient des valeurs appartenant à une liste pré-établie (pas du texte libre, donc). On attribue une valeur arbitraire à chaque réponse, et les données sont stockées au format numérique. Par exemple, pour coder la variable sex en factor, R attribuera la valeur 1 à la première valeur qui apparait, puis 2, etc… On aura par exemple 1 = “Femme” et 2 = “Homme”, avec un vecteur contenant les valeurs c(1,2,2,2,1,1,2,1,2,1,2). Le vecteur contient donc des nombres, mais qui ne sont pas considérés comme des valeurs numériques.\nPour modifier la colonne d’un dataframe, on utilise la fonction mutate(), généralement avec :\n\n\n\n\n\n\n\n\nMais lorsque l’on souhaite modifier plusieurs colonnes d’un coup, on peut utiliser la variante mutate_at(). Cette fonction prend deux arguments : un vecteur de classe character contenant la liste des colonnes à modifier, et le nom de la fonction à appliquer\nConsigne : A partir du dictionnaire des données, identifiez les variables de classe facteur, et modifiez-les pour avoir un summary() pertinent\n\n\n\n\n\n\n\n\n\n\n\nLe résultat du summary() est désormais plus clair, mais on souhaite avoir dans le résultat le label des variables factor. Pour cela, on utilisera le package {forcats}.",
+    "crumbs": [
+      "TP 1"
+    ]
+  },
+  {
+    "objectID": "pages/TP1.html#exercice-3-visualiser-les-données",
+    "href": "pages/TP1.html#exercice-3-visualiser-les-données",
+    "title": "TP 1",
+    "section": "Exercice 3 : Visualiser les données",
+    "text": "Exercice 3 : Visualiser les données\nLe package {ggplot2} permet de générer des graphes à partir des données d’un dataframe. La fonction ggplot() fonctionne par “couches”, ou layers : on commence par créer les coordonnées (axe X,Y), puis on définit les points/lignes à afficher dans ggplot(), on utilise la fonction aes() (pour aesthetics) pour définir les axes, et on définit ensuite le type de graphe à afficher avec les fonctions geom_* (geom_point, geom_line, geom_histogram…)\nVisualiser le temps de réactivation en fonction des aKIRs, par statut du donneur\n\n\n\n\n\n\n\n\n\n\n\nUne façon plus interactive de visualiser les données est d’utiliser le package {GWalkR} :",
+    "crumbs": [
+      "TP 1"
+    ]
+  },
+  {
+    "objectID": "pages/TP1.html#test-statistique",
+    "href": "pages/TP1.html#test-statistique",
+    "title": "TP 1",
+    "section": "Test statistique",
+    "text": "Test statistique\nOn souhaite réaliser un t.test pour savoir si les KIRs évoluent en fonction du statut cmv :",
+    "crumbs": [
+      "TP 1"
+    ]
   }
 ]
