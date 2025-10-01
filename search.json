@@ -10,6 +10,66 @@
     ]
   },
   {
+    "objectID": "pages/TP2.html",
+    "href": "pages/TP2.html",
+    "title": "TP 2",
+    "section": "",
+    "text": "Dans ce TP, on explorera le jeu de données microorganisms, qu’on appellera micro, et example_isolates qui contient les données de sensibilité aux antibiotiques de patients infectés par différents microorganismes.",
+    "crumbs": [
+      "TP 2"
+    ]
+  },
+  {
+    "objectID": "pages/TP2.html#micro",
+    "href": "pages/TP2.html#micro",
+    "title": "TP 2",
+    "section": "micro",
+    "text": "micro",
+    "crumbs": [
+      "TP 2"
+    ]
+  },
+  {
+    "objectID": "pages/TP2.html#example_isolates",
+    "href": "pages/TP2.html#example_isolates",
+    "title": "TP 2",
+    "section": "example_isolates",
+    "text": "example_isolates",
+    "crumbs": [
+      "TP 2"
+    ]
+  },
+  {
+    "objectID": "pages/TP2.html#exploration",
+    "href": "pages/TP2.html#exploration",
+    "title": "TP 2",
+    "section": "Exploration",
+    "text": "Exploration\n\n\n\n\n\n\n\n\nEvaluer la sensibilité d’e.coli à la Penicilline",
+    "crumbs": [
+      "TP 2"
+    ]
+  },
+  {
+    "objectID": "pages/TP2.html#nettoyage",
+    "href": "pages/TP2.html#nettoyage",
+    "title": "TP 2",
+    "section": "Nettoyage",
+    "text": "Nettoyage\nPour rendre les donneés plus lisibles, on va pivoter la table\n\n\n\n\n\n\n\n\nIdentifier le pourcentage de résistance à chaque antibiotique",
+    "crumbs": [
+      "TP 2"
+    ]
+  },
+  {
+    "objectID": "pages/TP2.html#visualiser-les-données",
+    "href": "pages/TP2.html#visualiser-les-données",
+    "title": "TP 2",
+    "section": "Visualiser les données",
+    "text": "Visualiser les données",
+    "crumbs": [
+      "TP 2"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction",
