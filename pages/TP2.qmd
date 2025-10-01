@@ -27,7 +27,7 @@ Dans ce TP, on explorera le jeu de données `microorganisms`, qu'on appellera `m
 #| persist: true
 #| timelimit: 0
 micro <- AMR::microorganisms
-gt::gt(micro) %>%
+gt::gt(micro %>% head(100)) %>%
   opt_interactive()
 ```
 
@@ -37,7 +37,7 @@ gt::gt(micro) %>%
 #| persist: true
 #| timelimit: 0
 
-gt::gt(AMR::example_isolates) %>%
+gt::gt(AMR::example_isolates %>% head(100)) %>%
   opt_interactive()
 ```
 
