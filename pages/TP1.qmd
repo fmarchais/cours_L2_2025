@@ -110,7 +110,7 @@ ______ %>%
 ```{webr}
 #| exercise: exo_1
 #| check: true
-if (identical(.result, cyto %>% count(sex)) {
+if (identical(.result, cyto %>% count(sex))) {
   list(correct = TRUE, message = "Correct !")
 } else {
   list(correct = FALSE, message = "Erreur !")

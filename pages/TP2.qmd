@@ -48,17 +48,18 @@ gt::gt(AMR::example_isolates %>% head(100)) %>%
 
 library(AMR)
 # filtrer pour ne garder que les bactéries et les colonnes mo, fullname, kingdom
-micro %>% 
+micro <- micro %>% 
   filter(kingdom == "Bacteria") %>%
   select(mo, fullname, kingdom)
-
+micro
 # Example_isolates : un dataset contenant des données sur 
 # la sensibilité aux ATB de patients infectés par différents micro-organismes
 
 # première exploration : quelles bactéries sont snesibles à la penicilline
 example_isolates %>% 
   filter(PEN == "S") %>%
-  count(mo)
+  count(mo) %>%
+  arrange(desc(n))
 ```
 
 **Evaluer la sensibilité d'e.coli à la Penicilline**
