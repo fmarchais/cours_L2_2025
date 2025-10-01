@@ -193,6 +193,7 @@ summary(cyto)
 ```{webr}
 #| exercise: exo_3
 #| check: true
+#| persist: true
 if (identical(
   .result, 
   summary(cyto %>% 

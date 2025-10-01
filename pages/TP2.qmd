@@ -62,7 +62,7 @@ example_isolates %>%
   arrange(desc(n))
 ```
 
-**Evaluer la sensibilité d'e.coli à la Penicilline**
+**Evaluer la sensibilité d'e.coli (B_ESCHR_COLI) à la Penicilline**
 
 ```{webr}
 #| exercise: exo_1
