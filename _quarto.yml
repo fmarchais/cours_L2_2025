@@ -23,6 +23,7 @@ website:
       - "pages/Les_bases.qmd"
       - "pages/TP1.qmd"
       - "pages/TP2.qmd"
+      - "pages/TP3.qmd"
     
 # pour créer des sections :
    # contents: 
