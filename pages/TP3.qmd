@@ -1,0 +1,187 @@
+---
+title: "TP 3"
+format: live-html
+engine: knitr
+webr:
+  packages: 
+    - dplyr
+    - ggsurvfit
+    - gt
+toc: true
+---
+
+{{< include ./../_extensions/r-wasm/live/_knitr.qmd >}}
+
+
+
+
+# Problématique  
+
+Par abus de langage, on parle souvent "du cancer" comme d'une seule maladie.
+En réalité il existe de nombreuses formes et différents mécanismes de cancer, 
+en fonction des tissus touchés ou de certaines mutations génétiques.
+
+Dans le cancer du sein, il existe trois mutations génétiques principales qui font 
+fortement varier le pronostic des patientes, et qui sont systématiquement
+recherchées avant de débuter un traitement. Ces trois gènes sont ceux des 
+récepteurs à la progestérone, des récepteurs aux oestrogènes et le gène HER2.
+Les options thérapeutiques disponibles pour les patientes varient fortement 
+en fonction de ce profil génétique.
+
+Pour ce TP, nous allons imaginer une étude clinique portant sur un nouveau
+traitement pour le cancer du sein. Le jeu de données à votre disposition 
+contient des données sur l'age, le sexe, le profil génétique et l'évolution de 
+la maladie.
+
+
+# Objectifs  
+
+ - Découvrir le dataset et se renseigner sur les variables
+ - Expliquer ce que sont le stade et le grade d'un cancer 
+ - Expliquer ce que sont les marqueurs ER, PR et HER2 et comment ils influencent le traitement
+    - Pourquoi ces marqueurs sont recherchés ?
+    - Expliquez les mécanismes d'actions possible d'un traitement sur ces gènes
+    - Recherchez Bevacizumab et Trastuzumab et expliquez leur mécanisme d'action
+ - Expliquer ce qu'est la progression d'un cancer
+ - Réaliser une courbe de survie des patients en fonctions de différents facteurs
+     - Essayer en fonction du traitement, du sexe, des biomarqueurs, etc...
+     - En conclure le type de traitement utilisé dans cette étude
+
+
+# Les données  
+
+```{webr data}
+#| echo: false
+#| include: true
+#| message: false
+#| persist: true
+#| timelimit: 0
+
+library(gt)
+df <- read.csv("./../documents/data_tp3.csv")
+
+gt::gt(df) %>%
+  gt::opt_interactive()
+```
+
+# Documents  
+
+## Dictionnaire des données
+
+![](./../documents/Dictionnaire de données TP 3.pdf){width=100% height=800}
+
+
+
+# Exercices
+
+## Exploration  
+
+Comme dans les TP précédents, utilisez summary() pour visualiser rapidement les données.
+Le dataframe s'appelera `df`
+
+```{webr}
+
+```
+
+
+
+## Nettoyage
+
+Retirez les hommes du jeu de données
+
+```{webr}
+#| persist: true
+df_ clean <- df %>%
+  ...
+```
+
+
+Utilisez la fonction mutate() et case_when() pour modifier les variables "*_yn" et recoder les 0/1 en non/oui
+::: {.callout-tip}
+Le symbole `~` (*tilde*) peut signifier "prend la valeur" ou "en fonction de"
+:::
+
+Recodez également la variable "sexe" pour afficher "Femmes" au lieu de 0
+
+```{webr}
+#| persist: true
+df_clean <- df %>%
+  mutate(
+    menopause_yn = case_when(
+      ____ == ____ ~ _____,
+      ____ == ____ ~ _____,
+    ),
+    ......
+  )
+```
+
+
+Créez une nouvelle colonne "genotype" qui combine les 3 colonnes "er","pr" et "her2.
+Si `er` ou `pr` est positive, on dit que la patiente est "RH+" (rh = récepteur aux hormones), sinon "RH-"
+Le génotype se compose de RH+/- et HER2+/-
+
+::: {.callout-tip}
+Vous pouvez utiliser la fonction `unite()` et chercher la documentation associée sur internet ou en tapant `?unite()` dans la console
+:::
+
+```{webr}
+#| persist: true
+```
+
+
+```{webr correction}
+#| echo: false
+#| include: false
+df %>%
+    mutate(
+        rh = case_when(
+            er == "positive" | pr == "positive" ~ "rh+",
+            TRUE ~ "rh-"),
+        her2_lab = case_when(
+            her2 %in% c("0","1+") ~ "her2-",
+            her2 %in% c("2+","3+") ~ "her2+"
+        )) %>%
+    unite("genotype", c("rh","her2_lab"), remove = FALSE, sep = " ")
+```
+
+## Visualisation
+
+Complétez le code pour afficher la courbe de survie en fonction de différents facteurs.
+
+::: {.callout-tip}
+Vous pouvez chercher la documentation associée au package `ggsurvfit` sur internet ou en tapant `?ggsurvfit` dans la console.  \n
+La fonction `ggsurvfit()` est un dérivé du package `{ggplot}` et permet de créer le graphe (idem pour les fonctions suivantes)
+:::
+
+
+
+```{webr}
+library(ggsurvift)
+
+survfit2(Surv(_____, _____) ~ _____, data = df) %>% 
+  ggsurvfit() +
+  labs(
+    x = "Years",
+    y = "Progression free survival"
+  ) +
+  scale_y_continuous(limits = c(0, 1)) + 
+  scale_x_continuous(limits = c(0, max(df$delai_censure_annee))) +
+  add_confidence_interval() +
+  add_risktable()
+```
+
+```{webr check_exercise}
+
+survfit2(Surv(delai_censure_annee, status) ~ groupe_tt, data = df) %>% 
+  ggsurvfit() +
+  labs(
+    x = "Years",
+    y = "Progression free survival"
+  ) +
+  scale_y_continuous(limits = c(0, 1)) + 
+  scale_x_continuous(limits = c(0, max(df$delai_censure_annee))) +
+  add_confidence_interval() +
+  add_risktable()
+
+```
+
