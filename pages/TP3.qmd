@@ -58,7 +58,7 @@ la maladie.
 #| timelimit: 0
 
 library(gt)
-df <- read.csv("./../documents/data_tp3.csv")
+df <- read.csv("/documents/data_tp3.csv")
 
 gt::gt(df) %>%
   gt::opt_interactive()
@@ -184,4 +184,5 @@ survfit2(Surv(delai_censure_annee, status) ~ groupe_tt, data = df) %>%
   add_risktable()
 
 ```
+
 
