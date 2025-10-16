@@ -110,6 +110,56 @@
     ]
   },
   {
+    "objectID": "pages/TP3.html",
+    "href": "pages/TP3.html",
+    "title": "TP 3",
+    "section": "",
+    "text": "Par abus de langage, on parle souvent “du cancer” comme d’une seule maladie. En réalité il existe de nombreuses formes et différents mécanismes de cancer, en fonction des tissus touchés ou de certaines mutations génétiques.\nDans le cancer du sein, il existe trois mutations génétiques principales qui font fortement varier le pronostic des patientes, et qui sont systématiquement recherchées avant de débuter un traitement. Ces trois gènes sont ceux des récepteurs à la progestérone, des récepteurs aux oestrogènes et le gène HER2. Les options thérapeutiques disponibles pour les patientes varient fortement en fonction de ce profil génétique.\nPour ce TP, nous allons imaginer une étude clinique portant sur un nouveau traitement pour le cancer du sein. Le jeu de données à votre disposition contient des données sur l’age, le sexe, le profil génétique et l’évolution de la maladie.",
+    "crumbs": [
+      "TP 3"
+    ]
+  },
+  {
+    "objectID": "pages/TP3.html#dictionnaire-des-données",
+    "href": "pages/TP3.html#dictionnaire-des-données",
+    "title": "TP 3",
+    "section": "Dictionnaire des données",
+    "text": "Dictionnaire des données",
+    "crumbs": [
+      "TP 3"
+    ]
+  },
+  {
+    "objectID": "pages/TP3.html#exploration",
+    "href": "pages/TP3.html#exploration",
+    "title": "TP 3",
+    "section": "Exploration",
+    "text": "Exploration\nComme dans les TP précédents, utilisez summary() pour visualiser rapidement les données. Le dataframe s’appelera df",
+    "crumbs": [
+      "TP 3"
+    ]
+  },
+  {
+    "objectID": "pages/TP3.html#nettoyage",
+    "href": "pages/TP3.html#nettoyage",
+    "title": "TP 3",
+    "section": "Nettoyage",
+    "text": "Nettoyage\nRetirez les hommes du jeu de données\n\n\n\n\n\n\n\n\nUtilisez la fonction mutate() et case_when() pour modifier les variables “*_yn” et recoder les 0/1 en non/oui ::: {.callout-tip} Le symbole ~ (tilde) peut signifier “prend la valeur” ou “en fonction de” :::\nRecodez également la variable “sexe” pour afficher “Femmes” au lieu de 0\n\n\n\n\n\n\n\n\nCréez une nouvelle colonne “genotype” qui combine les 3 colonnes “er”,“pr” et “her2. Si er ou pr est positive, on dit que la patiente est”RH+” (rh = récepteur aux hormones), sinon “RH-” Le génotype se compose de RH+/- et HER2+/-\n\n\n\n\n\n\nTip\n\n\n\nVous pouvez utiliser la fonction unite() et chercher la documentation associée sur internet ou en tapant ?unite() dans la console",
+    "crumbs": [
+      "TP 3"
+    ]
+  },
+  {
+    "objectID": "pages/TP3.html#visualisation",
+    "href": "pages/TP3.html#visualisation",
+    "title": "TP 3",
+    "section": "Visualisation",
+    "text": "Visualisation\nComplétez le code pour afficher la courbe de survie en fonction de différents facteurs.\n\n\n\n\n\n\nTip\n\n\n\nVous pouvez chercher la documentation associée au package ggsurvfit sur internet ou en tapant ?ggsurvfit dans la console. La fonction ggsurvfit() est un dérivé du package {ggplot} et permet de créer le graphe (idem pour les fonctions suivantes)",
+    "crumbs": [
+      "TP 3"
+    ]
+  },
+  {
     "objectID": "pages/TP1.html#exercice-1-explorer-les-données",
     "href": "pages/TP1.html#exercice-1-explorer-les-données",
     "title": "TP 1",
