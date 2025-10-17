@@ -86,7 +86,7 @@ Retirez les hommes du jeu de données
 
 ```{webr}
 #| persist: true
-df_ clean <- df %>%
+df_clean <- df %>%
   ...
 ```
 
@@ -167,6 +167,8 @@ survfit2(Surv(_____, _____) ~ _____, data = df) %>%
 ```
 
 ```{webr check_exercise}
+#| echo: false
+#| include: false
 
 survfit2(Surv(delai_censure_annee, status) ~ groupe_tt, data = df) %>% 
   ggsurvfit() +
