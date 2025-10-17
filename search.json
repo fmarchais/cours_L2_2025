@@ -144,7 +144,7 @@
     "href": "pages/TP3.html#nettoyage",
     "title": "TP 3",
     "section": "Nettoyage",
-    "text": "Nettoyage\nRetirez les hommes du jeu de données\n\n\n\n\n\n\n\n\nUtilisez la fonction mutate() et case_when() pour modifier les variables “*_yn” et recoder les 0/1 en non/oui ::: {.callout-tip} Le symbole ~ (tilde) peut signifier “prend la valeur” ou “en fonction de” :::\nRecodez également la variable “sexe” pour afficher “Femmes” au lieu de 0\n\n\n\n\n\n\n\n\nCréez une nouvelle colonne “genotype” qui combine les 3 colonnes “er”,“pr” et “her2. Si er ou pr est positive, on dit que la patiente est”RH+” (rh = récepteur aux hormones), sinon “RH-” Le génotype se compose de RH+/- et HER2+/-\n\n\n\n\n\n\nTip\n\n\n\nVous pouvez utiliser la fonction unite() et chercher la documentation associée sur internet ou en tapant ?unite() dans la console",
+    "text": "Nettoyage\nRetirez les hommes du jeu de données\n\n\n\n\n\n\n\n\nUtilisez la fonction mutate() et case_when() pour modifier les variables “*_yn” et recoder les 0/1 en non/oui\n\n\n\n\n\n\nTip\n\n\n\nLe symbole ~ (tilde) peut signifier “prend la valeur” ou “en fonction de”\n\n\nRecodez également la variable “sexe” pour afficher “Femmes” au lieu de 0\n\n\n\n\n\n\n\n\nCréez une nouvelle colonne “genotype” qui combine les 3 colonnes “er”,“pr” et “her2. Si er ou pr est positive, on dit que la patiente est”RH+” (rh = récepteur aux hormones), sinon “RH-” Le génotype se compose de RH+/- et HER2+/-\n\n\n\n\n\n\nTip\n\n\n\nVous pouvez utiliser la fonction unite() et chercher la documentation associée sur internet ou en tapant ?unite() dans la console",
     "crumbs": [
       "TP 3"
     ]
