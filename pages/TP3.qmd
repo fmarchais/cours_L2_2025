@@ -13,8 +13,6 @@ toc: true
 {{< include ./../_extensions/r-wasm/live/_knitr.qmd >}}
 
 
-
-
 # Problématique  
 
 Par abus de langage, on parle souvent "du cancer" comme d'une seule maladie.
@@ -50,16 +48,18 @@ la maladie.
 
 # Les données  
 
+
+
+
 ```{webr data}
 #| echo: false
 #| include: true
 #| message: false
-#| persist: true
+
 #| timelimit: 0
 
-library(gt)
 df <- read.csv("/documents/data_tp3.csv")
-
+library(gt)
 gt::gt(df) %>%
   gt::opt_interactive()
 ```
@@ -97,6 +97,7 @@ df_ clean <- df %>%
 
 
 Utilisez la fonction mutate() et case_when() pour modifier les variables "*_yn" et recoder les 0/1 en non/oui
+
 ::: {.callout-tip}
 Le symbole `~` (*tilde*) peut signifier "prend la valeur" ou "en fonction de"
 :::
