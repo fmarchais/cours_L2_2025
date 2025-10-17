@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fmarchais.github.io/cours_L2_2025/pages/Les_bases.html</loc>
-    <lastmod>2025-10-17T08:45:16.480Z</lastmod>
-  </url>
-  <url>
     <loc>https://fmarchais.github.io/cours_L2_2025/pages/TP2.html</loc>
-    <lastmod>2025-10-17T08:45:16.481Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fmarchais.github.io/cours_L2_2025/index.html</loc>
-    <lastmod>2025-10-17T08:45:16.480Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fmarchais.github.io/cours_L2_2025/pages/TP3.html</loc>
-    <lastmod>2025-10-17T08:45:16.481Z</lastmod>
+    <lastmod>2025-10-17T08:55:01.817Z</lastmod>
   </url>
   <url>
     <loc>https://fmarchais.github.io/cours_L2_2025/pages/TP1.html</loc>
-    <lastmod>2025-10-17T08:45:16.481Z</lastmod>
+    <lastmod>2025-10-17T08:55:01.817Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fmarchais.github.io/cours_L2_2025/index.html</loc>
+    <lastmod>2025-10-17T08:55:01.816Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fmarchais.github.io/cours_L2_2025/pages/Les_bases.html</loc>
+    <lastmod>2025-10-17T08:55:01.817Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fmarchais.github.io/cours_L2_2025/pages/TP3.html</loc>
+    <lastmod>2025-10-17T08:55:01.817Z</lastmod>
   </url>
 </urlset>
