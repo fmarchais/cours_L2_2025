@@ -48,17 +48,12 @@ la maladie.
 
 # Les données  
 
-
-
-
 ```{webr data}
 #| echo: false
 #| include: true
 #| message: false
-
 #| timelimit: 0
-
-df <- read.csv("/documents/data_tp3.csv")
+df <- read.csv("https://raw.githubusercontent.com/fmarchais/cours_L2_2025/refs/heads/main/documents/data_tp3.csv")
 library(gt)
 gt::gt(df) %>%
   gt::opt_interactive()
